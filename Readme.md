@@ -33,7 +33,7 @@ https://github.com/user-attachments/assets/e8e6d010-5372-4026-93ff-17f271ad7a84
 3. Verify Your Kubernetes version
 
 - minikube version
-- kubectl version --short
+- kubectl version
 
 4. Use Minikube's Docker Daemon
 
