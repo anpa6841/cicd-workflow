@@ -52,24 +52,21 @@ https://github.com/user-attachments/assets/e8e6d010-5372-4026-93ff-17f271ad7a84
 
 - minikube ssh -- docker images
 
-<pre>
-worker-node                               latest         5b2b152d9932   7 minutes ago    171MB
-fastapi-job-manager                       latest         74175036d076   10 minutes ago   182MB
-</pre>
-
 8. Note: These are one-time steps that have already been executed to convert
          existing docker-compose file to Kubernetes YAML.
 
 - brew install kompose
 - kompose convert
+
 - Edit worker-node deployment files
     - Replace worker-node-1.yaml / worker-node-1.yaml to worker-node.yaml
     - Set Replicas to 3
-    - Set imagePullPolicy: Never in both worker-node fastapi-job-manager to prevent pulling image from registry
+    - Set imagePullPolicy: Never in both worker-node and fastapi-job-manager to prevent pulling image from registry
                            and fetch images built locally instead.
+
 - Move docker-compose.yaml to docker-compose.yaml.bak so that kubernetes does not see it as a deployment file.
 
-9. Deploy Services to Minikube:
+9. Deploy Services to Minikube
 
 - kubectl apply -f .
 
@@ -77,18 +74,28 @@ fastapi-job-manager                       latest         74175036d076   10 minut
 
 - kubectl port-forward service/fastapi-job-manager 8000:8000
 
-11. Check Logs for Workers
+11. Submit Jobs
+
+- ./task_dispatcher.sh
+
+12. Check Job Manager Logs
 
 - kubectl get pods
 - kubectl logs [fastapi-job-manager]
 
-12. Open an Interactive Shell in the Worker Pod
+13. Open an Interactive Shell in the Worker Pod
 
 - kubectl get pods
 - kubectl exec -it [worker-node] -- /bin/bash
 
-13. Cleanup Resources
+14. Check Worker Logs
+
+- cat job_results.log
+
+15. Cleanup Resources
 
 - kubectl delete pods --all
 - kubectl delete svc --all
 - kubectl delete deployment --all
+
+https://github.com/user-attachments/assets/b4c9c532-dac5-44e8-aced-bad0a247a9ce
