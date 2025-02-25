@@ -6,7 +6,7 @@
 
 ### Testing the system
 
-- ./task_dispatcher.sh
+- ./task_dispatcher.sh "pytest -v"
 
 ### Check Logs
 
@@ -78,7 +78,7 @@ https://github.com/user-attachments/assets/e8e6d010-5372-4026-93ff-17f271ad7a84
 
 11. Submit Jobs
 
-- ./task_dispatcher.sh
+- ./task_dispatcher.sh "pytest -v"
 
 12. Check Job Manager Logs
 
@@ -113,7 +113,7 @@ https://github.com/user-attachments/assets/b4c9c532-dac5-44e8-aced-bad0a247a9ce
 
 2. Run Stress Test
 
-- ./task_dispatcher_load.sh
+- ./task_dispatcher.sh "yes > /dev/null &"
 
 3. Monitor HPA with 5-second updates
 
